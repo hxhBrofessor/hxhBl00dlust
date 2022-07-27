@@ -11,8 +11,7 @@
 
 - Install the following before running the script
 ```
-sudo apt install python3-pip
-sudo python3 -m pip install requests
+sudo apt install python3-pip && sudo python3 -m pip install requests
 ```
 
 - `Feroxbuster` gets compiled in the directory of `hxhBl00dlust`, just move the file to the following path
