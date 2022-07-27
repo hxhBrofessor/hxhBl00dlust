@@ -1,7 +1,7 @@
 #!/bin/python3
 '''
 Purpose: Build the hxhBl00dlust
-Author: Bryan Angeles (hxhBroFessor)
+Author: hxhBroFessor
 Usage: ./hxhBl00dlust.py
 
 '''
@@ -58,7 +58,8 @@ aptPackageList = [
     'recon-ng',
     'ffuf',
     'mousepad',
-    'jq'
+    'jq',
+    'wireshark'
 
     ]
 
@@ -110,8 +111,8 @@ def checkForInternet():
         exit(1)
 
 def initNotice():
-    print('[!] This script requires user input once or twice.\n\
-    [!] It is not completely "Set and Forget".')
+    print('[!] This script requires user input once or twice...maybe\n\
+    [!] ExploitDB-Papers install does take awhile, so go get a snack.')
     nullInput = input('Hit Enter.')
 
 # Get starting Disk Room
@@ -462,7 +463,6 @@ def displayLog():
 def giveUserNextSteps():
     print(GREEN + '[+]' + '-----------------------------------------------------------------------------------' + NOCOLOR)
     print(GREEN + '[+]' + '------------------------ ! Script Complete ! --------------------------------------' + NOCOLOR)
-    print('\n\n[!] REBOOT the system.')
     nullInput = input('Hit Enter.')
 
 # Re-enable unattended upgrade
