@@ -229,39 +229,6 @@ def installStarterPackages():
     except Exception as e:
         writeToLog('[-] Starter Packages installation failed:',str(e))
 
-# the REMnux Distribution
-def installREMnux():
-    writeToLog('[+] Installing REMnux. This will take quite awhile. Verify the hash from the site later.')
-    try:
-        run(['/usr/bin/wget https://REMnux.org/remnux-cli'],shell=True)
-        run(['/usr/bin/mv remnux-cli remnux'],shell=True)
-        run(['/usr/bin/chmod +x remnux'],shell=True)
-        run(['/usr/bin/mv remnux /usr/local/bin'],shell=True)
-        run(['/usr/local/bin/remnux install --mode=addon'],shell=True)
-        writeToLog('[+] REMnux Added On (downloaded and ran).')
-    except Exception as e:
-        writeToLog('[-] Something went wrong during the REMnux install. Error: ' + str(e))
-
-# Install SIFT
-def installSIFTPackages():
-    writeToLog('[*] Finding latest SIFT Release.')
-    try:
-        latestLinkPage  = get('https://github.com/sans-dfir/sift-cli/releases/latest').text.splitlines()
-        latestSIFTBinLine = [match for match in latestLinkPage if "sift-cli-linux" in match][0].split('"')[1]
-        latestSIFTBin = 'https://github.com/' + latestSIFTBinLine
-        #latestSIFTBin = search('https:.*sift-cli-linux',latestSIFTBinLine)[0]
-        writeToLog('[+] latest SIFT BIN: ' + latestSIFTBin)
-    except Exception as e:
-        writeToLog('[-] latest SIFT Bin not found. Error: ' + str(e))
-        return
-    writeToLog('[*] Installing SIFT Packages.')
-    try:
-        run(['/usr/bin/curl -Lo /usr/local/bin/sift ' + latestSIFTBin],shell=True)
-        run(['/usr/bin/chmod +x /usr/local/bin/sift'],shell=True)
-        run(['/usr/local/bin/sift install --mode=packages-only'],shell=True)
-        writeToLog('[+] SIFT Packages installed (downloaded and ran).')
-    except Exception as e:
-        writeToLog('[-] Installation of SIFT Packages had an error. Error: '+str(e))
 
 # install base packages
 def installAPTandSNAPPackages():
@@ -491,11 +458,11 @@ def displayLog():
         for line in allLines:
             print(line.strip())
 
-# display message about updating ZAP and Burp after reboot
+# display message for finish line
 def giveUserNextSteps():
     print(GREEN + '[+]' + '-----------------------------------------------------------------------------------' + NOCOLOR)
     print(GREEN + '[+]' + '------------------------ ! Script Complete ! --------------------------------------' + NOCOLOR)
-    print('\n\n[!] REBOOT the system. After Reboot you will want to run Burp, Zap and Ghidra. Each will ask you to update.')
+    print('\n\n[!] REBOOT the system.')
     nullInput = input('Hit Enter.')
 
 # Re-enable unattended upgrade
