@@ -22,7 +22,7 @@ starterPackagesList = [
 # List of packages to have APT install. Change if you want. You break it you buy it.
 aptPackageList = [
     'tmux',
-    'torbrowser-launcher',
+    #'torbrowser-launcher',
     'nmap',
     'smbclient',
     'locate',
@@ -402,18 +402,26 @@ def theHarvestor():
 def installWindowsResources():
     writeToLog('[*] Installing Kali\'s Windows Resources')
     try:
-        run(['/usr/bin/git clone https://gitlab.com/kalilinux/packages/windows-binaries.git /usr/share/windows-resources'],shell=True)
-        writeToLog('[+] Kali\'s Windows Resources Cloned to /usr/share/webshells')
+        run(['/usr/bin/git clone https://gitlab.com/kalilinux/packages/windows-binaries.git /opt/windows-resources'],shell=True)
+        writeToLog('[+] Kali\'s Windows Resources Cloned to /opt/windows-resources')
     except Exception as e:
         writeToLog('[-] There was an error installing Enum4Linux. Error: ' + str(e))
 
 def hackTricks():
     writeToLog('[*] Installing Hacktrick\'s Wiki')
     try:
-        run(['/usr/bin/git clone https://github.com/carlospolop/hacktricks.git /usr/share/hacktricks'],shell=True)
-        writeToLog('[+] Hacktricks Cloned to /usr/share/hacktricks')
+        run(['/usr/bin/git clone https://github.com/carlospolop/hacktricks.git /opt/hacktricks'],shell=True)
+        writeToLog('[+] Hacktricks Cloned to /opt/hacktricks')
     except Exception as e:
         writeToLog('[-] There was an error installing hackTricks. Error: ' + str(e))
+
+def PEASSNG():
+    writeToLog('[*] Installing Installing PEASS')
+    try:
+        run(['/usr/bin/git clone https://github.com/carlospolop/PEASS-ng.git /opt/PEASS-ng'],shell=True)
+        writeToLog('[+] PEASS-ng Cloned to /opt/PEASS-ng')
+    except Exception as e:
+        writeToLog('[-] There was an error installing PEASS-ng. Error: ' + str(e))
 
 # Install Bloodhound
 def installBloodhound():
@@ -493,6 +501,7 @@ def main():
     corsy()
     theHarvestor()
     hackTricks()
+    PEASSNG()
     freeSpaceEnd()
     displayLog()
     giveUserNextSteps()
